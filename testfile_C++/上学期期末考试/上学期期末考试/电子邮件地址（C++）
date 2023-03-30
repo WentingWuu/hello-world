@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+map<char,int> mp;
+map<char,int>::iterator it;
+int isvalid(char x){
+	if((x>='A' && x<='Z') ||(x>='a' && x<='z'))
+		return 1;
+	else if((x>='1' && x<='9')|| x=='_' || x=='-')
+		return 1;
+	else
+		return 0;
+}
+int main()
+{
+	string s;
+	getline(cin,s);
+	int len=s.size();
+	for(int i=0;i<len;i++){
+		mp[s[i]]++;
+	}
+	if(mp['@']>=2){
+		cout<<"no";
+		return 0;
+	}
+	int temp1=s.find('@');
+	int temp2=s.find('.');
+	if(temp1==NULL || temp2==NULL || temp1==0 || temp1==len-1 || temp2-temp1==1)
+	{
+		cout<<"no";
+		return 0;
+	}
+	for(int i=0;i<temp1;i++){
+		if(!isvalid(s[i]))
+		{
+			cout<<"no";
+			return 0;
+		}
+	}
+	cout<<"yes";
+	return 0;
+}
